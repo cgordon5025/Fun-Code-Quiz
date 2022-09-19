@@ -218,8 +218,8 @@ var option4El = document.getElementById('option4');
     option3El.textContent = [question1Info.opt3];
     option4El.textContent = [question1Info.opt4];
     if (option1El.addEventListener('click',function(){
-        if (secLeft>0)
-        secLeft -=10
+        if (secLeft>0){
+        secLeft -=10}
         // secLeft - 10;
         //this must go here so that it is included on the click of option1
         showQuestion2()
@@ -232,14 +232,14 @@ var option4El = document.getElementById('option4');
         option2El.addEventListener('click',showQuestion2)
     }));
     if (option3El.addEventListener('click',function(){
-        if (secLeft>0)
-        secLeft = secLeft - 10;
+        if (secLeft>0){
+        secLeft = secLeft - 10;}
         //this must go here so that it is included on the click of option1
         option3El.addEventListener('click',showQuestion2)
     }));
     if (option4El.addEventListener('click',function(){
-        if (secLeft>0)
-        secLeft = secLeft - 10;
+        if (secLeft>0){
+        secLeft = secLeft - 10;}
         //this must go here so that it is included on the click of option1
         option4El.addEventListener('click',showQuestion2)
     }));
