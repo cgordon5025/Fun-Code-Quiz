@@ -6,8 +6,11 @@ nav{
 nav p{
     display: flex;
 }
+.openingInstruct {
+    display: block;
+    justify-content: center;
+}
 #title {
-    display: flex;
     justify-content: center;
 }
 #beginContainer{
