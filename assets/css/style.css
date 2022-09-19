@@ -1,0 +1,29 @@
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+nav p{
+    display: flex;
+}
+#title {
+    display: flex;
+    justify-content: center;
+}
+#beginContainer{
+    display: flex;
+    justify-content: center;
+}
+#begin {
+    margin: 10px;
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
