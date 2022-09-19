@@ -1,5 +1,5 @@
 //variables I'll be using throughout, are located here
-var secLeft = 60;
+var secLeft = 59; //set to 59 because there is a one second delay in this starting
 var score = 0; //the only penalty for a wrong answer is time, no point deduction
 //make the timer
 
@@ -21,18 +21,32 @@ var option2El = document.getElementById('option2');
 var option3El = document.getElementById('option3');
 var option4El = document.getElementById('option4');
 
+// var allOpts = [option1El,option2El, option3El,option4El]
+// console.log(allOpts)
+// allOpts.style.display = "none"
+
+// var options = document.getElementsByClassName("options")
+// options.style.display = 'none';
 // var allOpts = document.querySelectorAll(": scope >div")
 // allOpts.style.display = "none"
 
 //presently there is a delay with the showing question 1, and the timer starting, download issues?
-beginEl.addEventListener('click',beginQuiz)
-beginEl.addEventListener('click',startTimer)
-beginEl.addEventListener('click',showQuestion1)
+// beginEl.addEventListener('click',beginQuiz)
+// beginEl.addEventListener('click',startTimer)
+// beginEl.addEventListener('click',showQuestion1)
+beginEl.addEventListener('click',start)
+
 //when the quiz starts lets hide the title and start button
+function start (){
+    beginQuiz();
+    startTimer();
+    showQuestion1();
+}
+
 function beginQuiz(){
     titleEl.style.display = 'none';
-    //how to hide button
     beginEl.style.display = 'none';
+    
 }
 //Lets display the questions 
 //currently does not fucntion while inside function, why?
@@ -204,10 +218,12 @@ var option4El = document.getElementById('option4');
     option3El.textContent = [question1Info.opt3];
     option4El.textContent = [question1Info.opt4];
     if (option1El.addEventListener('click',function(){
-        if (secLeft>0)
-        secLeft = secLeft - 10;
+        if (secLeft>0){
+        secLeft -=10}
+        // secLeft - 10;
         //this must go here so that it is included on the click of option1
-        option1El.addEventListener('click',showQuestion2)
+        showQuestion2()
+        // option1El.addEventListener('click',showQuestion2)
     }));
     if (option2El.addEventListener('click',function(){
         score++;
@@ -216,24 +232,24 @@ var option4El = document.getElementById('option4');
         option2El.addEventListener('click',showQuestion2)
     }));
     if (option3El.addEventListener('click',function(){
-        if (secLeft>0)
-        secLeft = secLeft - 10;
+        if (secLeft>0){
+        secLeft = secLeft - 10;}
         //this must go here so that it is included on the click of option1
         option3El.addEventListener('click',showQuestion2)
     }));
     if (option4El.addEventListener('click',function(){
-        if (secLeft>0)
-        secLeft = secLeft - 10;
+        if (secLeft>0){
+        secLeft = secLeft - 10;}
         //this must go here so that it is included on the click of option1
         option4El.addEventListener('click',showQuestion2)
     }));
 }
 function showQuestion2 (){
-    var questionEl = document.getElementById('question');
-var option1El = document.getElementById('option1');
-var option2El = document.getElementById('option2');
-var option3El = document.getElementById('option3');
-var option4El = document.getElementById('option4');
+//     var questionEl = document.getElementById('question');
+// var option1El = document.getElementById('option1');
+// var option2El = document.getElementById('option2');
+// var option3El = document.getElementById('option3');
+// var option4El = document.getElementById('option4');
 
     questionEl.textContent = [question2Info.question];
     option1El.textContent = [question2Info.opt1];
@@ -264,7 +280,10 @@ var option4El = document.getElementById('option4');
     //     option1El.addEventListener('click',showQuestion2)
     // }));
 }
-const resultsContainer = document.getElementById('results');
+
+var submitEl = document.getElementById('submit')
+var historyEl = document.getElementById('viewHistory');
+historyEl.addEventListener("click",showResults)
 
 
 console.log(questionEl)
@@ -272,10 +291,12 @@ console.log(timerEl)
 function showResults (){}
 
 
-//this is where the questions and choices will appear
-
-
 //build a function to store the player name and score
+//hey put in your name here
+//show the score
+//store the name and score
 
+
+//have a page that shows the previous records
 //need to have an array/object to hold the previous players scores and names
 

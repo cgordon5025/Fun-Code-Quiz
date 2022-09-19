@@ -6,7 +6,16 @@ nav{
 nav p{
     display: flex;
 }
+.openingInstruct {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
 #title {
+    display: flex;
+    justify-content: center;
+}
+.openingInstruct p {
     display: flex;
     justify-content: center;
 }
@@ -19,11 +28,20 @@ nav p{
     background-color: #ae88dc;
     padding: 10px;
     border-radius: 5px;
+    width: 50%;
 
 }
 
 .options {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
+}
+
+.options button{
+    width: 20vw;
+}
+
+.options li{
+    list-style: none;
 }
