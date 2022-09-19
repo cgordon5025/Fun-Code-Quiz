@@ -27,6 +27,14 @@ nav p{
 
 .options {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
+}
+
+.options button{
+    width: 20vw;
+}
+
+.options li{
+    list-style: none;
 }
