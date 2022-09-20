@@ -1,18 +1,19 @@
-//variables I'll be using throughout, are located here
-var secLeft = 59; //set to 59 because there is a one second delay in this starting
-var score = 0; //the only penalty for a wrong answer is time, no point deduction
-
+var score = 0
 //Here I am calling down elements by ID, keeping them all here
 // here are the vars that are set at the begining
 // Lets make all the variables
+var historyList = document.getElementById("previousScoresList")
+var scoreEl = document.getElementById('scoreDisplay');
+var players = [];
 var timerEl = document.getElementById('timerDisplay');
 var titleEl = document.getElementById('title');
 var beginEl = document.getElementById('begin');
 var historyLink = document.getElementById('viewHistory');
-var historyEl = document.getElementById('scoreHistory')
+
 var resultsEl = document.getElementById('results')
 var submitEl = document.getElementById('submit');
 var nameInputEl = document.getElementById("nameInput");
+
 var historyEl = document.getElementById('history');
 var instructEl = document.getElementById('instruct');
 var homeButton = document.getElementById('homePage');
@@ -134,8 +135,19 @@ Q10option4El.style.display = 'none';
 //Lets start the quiz
 beginEl.addEventListener('click', start);
 historyLink.addEventListener('click', renderResults);
-homeButton.addEventListener('click', goHome);
+homeButton.addEventListener('click', homePage);
 clearButton.addEventListener('click', clearScores);
+function homePage() {
+    beginEl.style.display = 'flex';
+    titleEl.style.display = 'flex';
+    instructEl.style.display = 'flex';
+    resultsEl.style.display = 'none';
+    submitEl.style.display = 'none';
+    nameInputEl.style.display = 'none';
+    historyEl.style.display = 'none'
+    scoreEl.style.display = 'none'
+
+}
 function start() {//when the quiz starts lets hide the title and start button
     beginQuiz();
     startTimer();
@@ -158,6 +170,7 @@ function beginQuiz() {
 //currently does not fucntion while inside function, why?
 // this is the base of the timer, can add hte in penalty for wrong answers in the space where i determine the right answer and add points
 function startTimer() {
+    var secLeft = 59;
     var interval = setInterval(function () {
         timerEl.textContent = ["Time: " + secLeft];
         secLeft--;;
@@ -760,12 +773,8 @@ function showQuestion10() {
 
 historyEl.addEventListener("click", showResults)
 
-var historyList = document.getElementById("previousScoresList")
-var scoreEl = document.getElementById('scoreDisplay');
-var players = [];
-var allOptsEl = document.querySelectorAll('.allOptions')
-function showResults() {
-    //lets hide the question elements again
+
+function hideAll() {
     questionEl.style.display = 'none';
 
     option1El.style.display = 'none';
@@ -818,6 +827,10 @@ function showResults() {
     Q10option3El.style.display = 'none';
     Q10option4El.style.display = 'none';
     corrAnsEL.style.display = 'none';
+}
+function showResults() {
+    //lets hide the question elements again
+    hideAll()
 
     //and show the results window
     resultsEl.style.display = 'block'
@@ -842,6 +855,10 @@ function renderResults() {
     historyEl.style.display = 'flex';
     homeButton.style.display = 'block';
     clearButton.style.display = 'block'
+    //lets empty these so it doesn't save over
+    nameInputEl.value = '';
+    score = 0
+    //establishing new variables
     var playerName = '';
     var playerScore = '';
 
@@ -855,45 +872,15 @@ function renderResults() {
         li.textContent = playerName + ': ' + playerScore + ' points';
 
         historyList.appendChild(li)
-
     }
 }
-function showHistory() {
-    titleEl.style.display = 'none';
-    instructEl.style.display = 'none'
-    beginEl.style.display = 'none';
-    resultsEl.style.display = 'none';
-    homeButton.style.display = 'block';
-    clearButton.style.display = 'block'
-    historyEl.style.display = 'flex';
-    // homeButton.style.display = 'none';
-    storedHistory = historyList
 
-
-}
-
-function goHome() {
-    titleEl.style.display = 'flex';
-    instructEl.style.display = 'flex'
-    beginEl.style.display = 'flex';
-    resultsEl.style.display = 'none';
-    historyEl.style.display = 'none';
-}
 
 function clearScores() {
     resultsEl.style.display = 'none';
-    prevScores.clear()
+    historyList = []
+    prevScores = []
     localStorage.removeItem("myScoreLocal")
-    historyList.clear()
+    renderResults()
+
 }
-
-
-//build a function to store the player name and score
-//hey put in your name here
-//show the score
-//store the name and score
-
-
-//have a page that shows the previous records
-//need to have an array/object to hold the previous players scores and names
-
