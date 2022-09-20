@@ -1,10 +1,10 @@
 //variables I'll be using throughout, are located here
 var secLeft = 59; //set to 59 because there is a one second delay in this starting
 var score = 0; //the only penalty for a wrong answer is time, no point deduction
-//make the timer
 
 //Here I am calling down elements by ID, keeping them all here
 // here are the vars that are set at the begining
+// Lets make all the variables
 var timerEl = document.getElementById('timerDisplay');
 var titleEl = document.getElementById('title');
 var beginEl = document.getElementById('begin');
@@ -18,7 +18,7 @@ var instructEl = document.getElementById('instruct');
 var homeButton = document.getElementById('homePage');
 var clearButton = document.getElementById('clearScores');
 
-//here are the elements for the quiz portion, repeats a lot here for each question
+// here are the elements for the quiz portion, repeats a lot here for each question
 var questionEl = document.getElementById('question');
 var option1El = document.getElementById('option1');
 var option2El = document.getElementById('option2');
@@ -79,6 +79,7 @@ var scoreTestEl = document.getElementById('scoreDisplayTest')
 resultsEl.style.display = 'none';
 historyEl.style.display = 'none';
 homeButton.style.display = 'none';
+clearButton.style.display = 'none'
 
 option1El.style.display = 'none';
 option2El.style.display = 'none';
@@ -132,7 +133,7 @@ Q10option3El.style.display = 'none';
 Q10option4El.style.display = 'none';
 //Lets start the quiz
 beginEl.addEventListener('click', start);
-historyLink.addEventListener('click', showHistory);
+historyLink.addEventListener('click', renderResults);
 homeButton.addEventListener('click', goHome);
 clearButton.addEventListener('click', clearScores);
 function start() {//when the quiz starts lets hide the title and start button
@@ -821,24 +822,26 @@ function showResults() {
     //and show the results window
     resultsEl.style.display = 'block'
     scoreEl.textContent = "Your final score is " + score;
-    submitEl.addEventListener("click", storeResults);
+    submitEl.addEventListener("click", renderResults);
 }
 if (!localStorage.getItem("myScoreLocal")) {
     var prevScores = [];
 } else { var prevScores = JSON.parse(localStorage.getItem("myScoreLocal")) }
-console.log(prevScores)
-console.log(prevScores[2].userName)
 
-function storeResults() {
+function renderResults() {
     var myScore = {
         userName: nameInputEl.value,
         userScore: score
     }
     prevScores.push(myScore)
     localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
+    titleEl.style.display = 'none';
+    instructEl.style.display = 'none'
+    beginEl.style.display = 'none';
     resultsEl.style.display = 'none';
     historyEl.style.display = 'flex';
     homeButton.style.display = 'block';
+    clearButton.style.display = 'block'
     var playerName = '';
     var playerScore = '';
 
@@ -860,6 +863,8 @@ function showHistory() {
     instructEl.style.display = 'none'
     beginEl.style.display = 'none';
     resultsEl.style.display = 'none';
+    homeButton.style.display = 'block';
+    clearButton.style.display = 'block'
     historyEl.style.display = 'flex';
     // homeButton.style.display = 'none';
     storedHistory = historyList
@@ -876,8 +881,10 @@ function goHome() {
 }
 
 function clearScores() {
+    resultsEl.style.display = 'none';
     prevScores.clear()
-    localStorage.clear()
+    localStorage.removeItem("myScoreLocal")
+    historyList.clear()
 }
 
 
