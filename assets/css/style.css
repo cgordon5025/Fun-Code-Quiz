@@ -91,6 +91,11 @@ nav p {
 
 #history ul {
     list-style: none;
+
+}
+
+#history li :nth-child(odd) {
+    background: #c9b9dc;
 }
 
 #history button {

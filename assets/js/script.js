@@ -1,24 +1,25 @@
-//variables I'll be using throughout, are located here
-var secLeft = 59; //set to 59 because there is a one second delay in this starting
-var score = 0; //the only penalty for a wrong answer is time, no point deduction
-//make the timer
-
+var score = 0
 //Here I am calling down elements by ID, keeping them all here
 // here are the vars that are set at the begining
+// Lets make all the variables
+var historyList = document.getElementById("previousScoresList")
+var scoreEl = document.getElementById('scoreDisplay');
+var players = [];
 var timerEl = document.getElementById('timerDisplay');
 var titleEl = document.getElementById('title');
 var beginEl = document.getElementById('begin');
 var historyLink = document.getElementById('viewHistory');
-var historyEl = document.getElementById('scoreHistory')
+
 var resultsEl = document.getElementById('results')
 var submitEl = document.getElementById('submit');
 var nameInputEl = document.getElementById("nameInput");
+
 var historyEl = document.getElementById('history');
 var instructEl = document.getElementById('instruct');
 var homeButton = document.getElementById('homePage');
 var clearButton = document.getElementById('clearScores');
 
-//here are the elements for the quiz portion, repeats a lot here for each question
+// here are the elements for the quiz portion, repeats a lot here for each question
 var questionEl = document.getElementById('question');
 var option1El = document.getElementById('option1');
 var option2El = document.getElementById('option2');
@@ -79,6 +80,7 @@ var scoreTestEl = document.getElementById('scoreDisplayTest')
 resultsEl.style.display = 'none';
 historyEl.style.display = 'none';
 homeButton.style.display = 'none';
+clearButton.style.display = 'none'
 
 option1El.style.display = 'none';
 option2El.style.display = 'none';
@@ -132,9 +134,20 @@ Q10option3El.style.display = 'none';
 Q10option4El.style.display = 'none';
 //Lets start the quiz
 beginEl.addEventListener('click', start);
-historyLink.addEventListener('click', showHistory);
-homeButton.addEventListener('click', goHome);
+historyLink.addEventListener('click', renderResults);
+homeButton.addEventListener('click', homePage);
 clearButton.addEventListener('click', clearScores);
+function homePage() {
+    beginEl.style.display = 'flex';
+    titleEl.style.display = 'flex';
+    instructEl.style.display = 'flex';
+    resultsEl.style.display = 'none';
+    submitEl.style.display = 'none';
+    nameInputEl.style.display = 'none';
+    historyEl.style.display = 'none'
+    scoreEl.style.display = 'none'
+
+}
 function start() {//when the quiz starts lets hide the title and start button
     beginQuiz();
     startTimer();
@@ -157,6 +170,7 @@ function beginQuiz() {
 //currently does not fucntion while inside function, why?
 // this is the base of the timer, can add hte in penalty for wrong answers in the space where i determine the right answer and add points
 function startTimer() {
+    var secLeft = 59;
     var interval = setInterval(function () {
         timerEl.textContent = ["Time: " + secLeft];
         secLeft--;;
@@ -759,12 +773,8 @@ function showQuestion10() {
 
 historyEl.addEventListener("click", showResults)
 
-var historyList = document.getElementById("previousScoresList")
-var scoreEl = document.getElementById('scoreDisplay');
-var players = [];
-var allOptsEl = document.querySelectorAll('.allOptions')
-function showResults() {
-    //lets hide the question elements again
+
+function hideAll() {
     questionEl.style.display = 'none';
 
     option1El.style.display = 'none';
@@ -817,28 +827,38 @@ function showResults() {
     Q10option3El.style.display = 'none';
     Q10option4El.style.display = 'none';
     corrAnsEL.style.display = 'none';
+}
+function showResults() {
+    //lets hide the question elements again
+    hideAll()
 
     //and show the results window
     resultsEl.style.display = 'block'
     scoreEl.textContent = "Your final score is " + score;
-    submitEl.addEventListener("click", storeResults);
+    submitEl.addEventListener("click", renderResults);
 }
 if (!localStorage.getItem("myScoreLocal")) {
     var prevScores = [];
 } else { var prevScores = JSON.parse(localStorage.getItem("myScoreLocal")) }
-console.log(prevScores)
-console.log(prevScores[2].userName)
 
-function storeResults() {
+function renderResults() {
     var myScore = {
         userName: nameInputEl.value,
         userScore: score
     }
     prevScores.push(myScore)
     localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
+    titleEl.style.display = 'none';
+    instructEl.style.display = 'none'
+    beginEl.style.display = 'none';
     resultsEl.style.display = 'none';
     historyEl.style.display = 'flex';
     homeButton.style.display = 'block';
+    clearButton.style.display = 'block'
+    //lets empty these so it doesn't save over
+    nameInputEl.value = '';
+    score = 0
+    //establishing new variables
     var playerName = '';
     var playerScore = '';
 
@@ -852,41 +872,15 @@ function storeResults() {
         li.textContent = playerName + ': ' + playerScore + ' points';
 
         historyList.appendChild(li)
-
     }
 }
-function showHistory() {
-    titleEl.style.display = 'none';
-    instructEl.style.display = 'none'
-    beginEl.style.display = 'none';
-    resultsEl.style.display = 'none';
-    historyEl.style.display = 'flex';
-    // homeButton.style.display = 'none';
-    storedHistory = historyList
 
-
-}
-
-function goHome() {
-    titleEl.style.display = 'flex';
-    instructEl.style.display = 'flex'
-    beginEl.style.display = 'flex';
-    resultsEl.style.display = 'none';
-    historyEl.style.display = 'none';
-}
 
 function clearScores() {
-    prevScores.clear()
-    localStorage.clear()
+    resultsEl.style.display = 'none';
+    historyList = []
+    prevScores = []
+    localStorage.removeItem("myScoreLocal")
+    renderResults()
+
 }
-
-
-//build a function to store the player name and score
-//hey put in your name here
-//show the score
-//store the name and score
-
-
-//have a page that shows the previous records
-//need to have an array/object to hold the previous players scores and names
-
