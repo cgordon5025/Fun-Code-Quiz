@@ -42,15 +42,19 @@ nav p {
     justify-content: center;
 }
 
-.options button {
+.options li {
+    list-style: none;
+
+}
+
+.options li button {
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
     width: 20vw;
 }
 
-.options li {
-    list-style: none;
-}
-
-#option1 {
+/* #option1 {
     background-color: #ae88dc;
     padding: 10px;
     border-radius: 5px;
@@ -72,7 +76,7 @@ nav p {
     background-color: #ae88dc;
     padding: 10px;
     border-radius: 5px;
-}
+} */
 
 #results {
     display: inline-flexbox;

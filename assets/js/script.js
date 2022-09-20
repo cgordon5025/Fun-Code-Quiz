@@ -16,13 +16,59 @@ var nameInputEl = document.getElementById("nameInput");
 var historyEl = document.getElementById('history');
 var instructEl = document.getElementById('instruct')
 
-//here are the elements for the quiz portion
+//here are the elements for the quiz portion, repeats a lot here for each question
 var questionEl = document.getElementById('question');
 var option1El = document.getElementById('option1');
 var option2El = document.getElementById('option2');
 var option3El = document.getElementById('option3');
 var option4El = document.getElementById('option4');
 var corrAnsEL = document.getElementById('corrAns')
+
+var Q2option1El = document.getElementById('Q2option1');
+var Q2option2El = document.getElementById('Q2option2');
+var Q2option3El = document.getElementById('Q2option3');
+var Q2option4El = document.getElementById('Q2option4');
+
+var Q3option1El = document.getElementById('Q3option1');
+var Q3option2El = document.getElementById('Q3option2');
+var Q3option3El = document.getElementById('Q3option3');
+var Q3option4El = document.getElementById('Q3option4');
+
+var Q4option1El = document.getElementById('Q4option1');
+var Q4option2El = document.getElementById('Q4option2');
+var Q4option3El = document.getElementById('Q4option3');
+var Q4option4El = document.getElementById('Q4option4');
+
+var Q5option1El = document.getElementById('Q5option1');
+var Q5option2El = document.getElementById('Q5option2');
+var Q5option3El = document.getElementById('Q5option3');
+var Q5option4El = document.getElementById('Q5option4');
+
+var Q6option1El = document.getElementById('Q6option1');
+var Q6option2El = document.getElementById('Q6option2');
+var Q6option3El = document.getElementById('Q6option3');
+var Q6option4El = document.getElementById('Q6option4');
+
+var Q7option1El = document.getElementById('Q7option1');
+var Q7option2El = document.getElementById('Q7option2');
+var Q7option3El = document.getElementById('Q7option3');
+var Q7option4El = document.getElementById('Q7option4');
+
+var Q8option1El = document.getElementById('Q8option1');
+var Q8option2El = document.getElementById('Q8option2');
+var Q8option3El = document.getElementById('Q8option3');
+var Q8option4El = document.getElementById('Q8option4');
+
+var Q9option1El = document.getElementById('Q9option1');
+var Q9option2El = document.getElementById('Q9option2');
+var Q9option3El = document.getElementById('Q9option3');
+var Q9option4El = document.getElementById('Q9option4');
+
+var Q10option1El = document.getElementById('Q10option1');
+var Q10option2El = document.getElementById('Q10option2');
+var Q10option3El = document.getElementById('Q10option3');
+var Q10option4El = document.getElementById('Q10option4');
+
 
 //remove after debugging
 var scoreTestEl = document.getElementById('scoreDisplayTest')
@@ -34,8 +80,54 @@ option1El.style.display = 'none';
 option2El.style.display = 'none';
 option3El.style.display = 'none';
 option4El.style.display = 'none';
+
+Q2option1El.style.display = 'none';
+Q2option2El.style.display = 'none';
+Q2option3El.style.display = 'none';
+Q2option4El.style.display = 'none';
+
+Q3option1El.style.display = 'none';
+Q3option2El.style.display = 'none';
+Q3option3El.style.display = 'none';
+Q3option4El.style.display = 'none';
+
+Q4option1El.style.display = 'none';
+Q4option2El.style.display = 'none';
+Q4option3El.style.display = 'none';
+Q4option4El.style.display = 'none';
+
+Q5option1El.style.display = 'none';
+Q5option2El.style.display = 'none';
+Q5option3El.style.display = 'none';
+Q5option4El.style.display = 'none';
+
+Q6option1El.style.display = 'none';
+Q6option2El.style.display = 'none';
+Q6option3El.style.display = 'none';
+Q6option4El.style.display = 'none';
+
+Q7option1El.style.display = 'none';
+Q7option2El.style.display = 'none';
+Q7option3El.style.display = 'none';
+Q7option4El.style.display = 'none';
+
+Q8option1El.style.display = 'none';
+Q8option2El.style.display = 'none';
+Q8option3El.style.display = 'none';
+Q8option4El.style.display = 'none';
+
+Q9option1El.style.display = 'none';
+Q9option2El.style.display = 'none';
+Q9option3El.style.display = 'none';
+Q9option4El.style.display = 'none';
+
+Q10option1El.style.display = 'none';
+Q10option2El.style.display = 'none';
+Q10option3El.style.display = 'none';
+Q10option4El.style.display = 'none';
 //Lets start the quiz
-beginEl.addEventListener('click', start)
+beginEl.addEventListener('click', start);
+historyLink.addEventListener('click', showHistory);
 function start() {//when the quiz starts lets hide the title and start button
     beginQuiz();
     startTimer();
@@ -189,14 +281,8 @@ var question10Info = {
 }
 
 
+
 function showQuestion1() {
-    //lets call down the variables just in case
-    var questionEl = document.getElementById('question');
-    //creating unique buttons because of weird error
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
     //set the text to the appropriate question
     questionEl.textContent = [question1Info.question];
     option1El.textContent = [question1Info.opt1];
@@ -238,11 +324,16 @@ function showQuestion1() {
     }));
 }
 function showQuestion2() {
-    var questionEl = document.getElementById('question');
-    var Q2option1El = document.getElementById('option1');
-    var Q2option2El = document.getElementById('option2');
-    var Q2option3El = document.getElementById('option3');
-    var Q2option4El = document.getElementById('option4');
+
+    //lets get rid of the old ones
+    option1El.style.display = 'none';
+    option2El.style.display = 'none';
+    option3El.style.display = 'none';
+    option4El.style.display = 'none';
+    Q2option1El.style.display = 'flex';
+    Q2option2El.style.display = 'flex';
+    Q2option3El.style.display = 'flex';
+    Q2option4El.style.display = 'flex';
 
     questionEl.textContent = [question2Info.question];
     Q2option1El.textContent = [question2Info.opt1];
@@ -253,7 +344,6 @@ function showQuestion2() {
     if (Q2option1El.addEventListener('click', function () {
         score += 5
         console.log(score)
-        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion3();
@@ -281,12 +371,14 @@ function showQuestion2() {
     }));
 }
 function showQuestion3() {
-    var questionEl = document.getElementById('question');
-    var Q3option1El = document.getElementById('option1');
-    var Q3option2El = document.getElementById('option2');
-    var Q3option3El = document.getElementById('option3');
-    var Q3option4El = document.getElementById('option4');
-
+    Q2option1El.style.display = 'none';
+    Q2option2El.style.display = 'none';
+    Q2option3El.style.display = 'none';
+    Q2option4El.style.display = 'none';
+    Q3option1El.style.display = 'flex';
+    Q3option2El.style.display = 'flex';
+    Q3option3El.style.display = 'flex';
+    Q3option4El.style.display = 'flex';
     questionEl.textContent = [question3Info.question];
     Q3option1El.textContent = [question3Info.opt1];
     Q3option2El.textContent = [question3Info.opt2];
@@ -323,11 +415,14 @@ function showQuestion3() {
     }));
 }
 function showQuestion4() {
-    var questionEl = document.getElementById('question');
-    var Q4option1El = document.getElementById('option1');
-    var Q4option2El = document.getElementById('option2');
-    var Q4option3El = document.getElementById('option3');
-    var Q4option4El = document.getElementById('option4');
+    Q3option1El.style.display = 'none';
+    Q3option2El.style.display = 'none';
+    Q3option3El.style.display = 'none';
+    Q3option4El.style.display = 'none';
+    Q4option1El.style.display = 'flex';
+    Q4option2El.style.display = 'flex';
+    Q4option3El.style.display = 'flex';
+    Q4option4El.style.display = 'flex';
 
     questionEl.textContent = [question4Info.question];
     Q4option1El.textContent = [question4Info.opt1];
@@ -336,10 +431,8 @@ function showQuestion4() {
     Q4option4El.textContent = [question4Info.opt4];
 
     if (Q4option1El.addEventListener('click', function () {
-        score += 5
+        score += 5;
         console.log(score);
-        var count = 0;
-        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion5();
@@ -367,11 +460,14 @@ function showQuestion4() {
     }));
 }
 function showQuestion5() {
-    var questionEl = document.getElementById('question');
-    var Q5option1El = document.getElementById('option1');
-    var Q5option2El = document.getElementById('option2');
-    var Q5option3El = document.getElementById('option3');
-    var Q5option4El = document.getElementById('option4');
+    Q4option1El.style.display = 'none';
+    Q4option2El.style.display = 'none';
+    Q4option3El.style.display = 'none';
+    Q4option4El.style.display = 'none';
+    Q5option1El.style.display = 'flex';
+    Q5option2El.style.display = 'flex';
+    Q5option3El.style.display = 'flex';
+    Q5option4El.style.display = 'flex';
 
     questionEl.textContent = [question5Info.question];
     Q5option1El.textContent = [question5Info.opt1];
@@ -401,7 +497,7 @@ function showQuestion5() {
         showQuestion6();
     }));
     if (Q5option4El.addEventListener('click', function () {
-        score += 5
+        score += 5;
         console.log(score)
         // score += 5;
         scoreTracker();
@@ -410,11 +506,14 @@ function showQuestion5() {
     }));
 }
 function showQuestion6() {
-    var questionEl = document.getElementById('question');
-    var Q6option1El = document.getElementById('option1');
-    var Q6option2El = document.getElementById('option2');
-    var Q6option3El = document.getElementById('option3');
-    var Q6option4El = document.getElementById('option4');
+    Q5option1El.style.display = 'none';
+    Q5option2El.style.display = 'none';
+    Q5option3El.style.display = 'none';
+    Q5option4El.style.display = 'none';
+    Q6option1El.style.display = 'flex';
+    Q6option2El.style.display = 'flex';
+    Q6option3El.style.display = 'flex';
+    Q6option4El.style.display = 'flex';
 
     questionEl.textContent = [question6Info.question];
     Q6option1El.textContent = [question6Info.opt1];
@@ -437,7 +536,7 @@ function showQuestion6() {
         showQuestion7();
     }));
     if (Q6option3El.addEventListener('click', function () {
-        score = score + 5;
+        score += 5;
         console.log(score)
         // score += 5;
         scoreTracker();
@@ -453,11 +552,14 @@ function showQuestion6() {
     }));
 }
 function showQuestion7() {
-    var questionEl = document.getElementById('question');
-    var Q7option1El = document.getElementById('option1');
-    var Q7option2El = document.getElementById('option2');
-    var Q7option3El = document.getElementById('option3');
-    var Q7option4El = document.getElementById('option4');
+    Q6option1El.style.display = 'none';
+    Q6option2El.style.display = 'none';
+    Q6option3El.style.display = 'none';
+    Q6option4El.style.display = 'none';
+    Q7option1El.style.display = 'flex';
+    Q7option2El.style.display = 'flex';
+    Q7option3El.style.display = 'flex';
+    Q7option4El.style.display = 'flex';
 
     questionEl.textContent = [question7Info.question];
     Q7option1El.textContent = [question7Info.opt1];
@@ -494,11 +596,14 @@ function showQuestion7() {
     }));
 }
 function showQuestion8() {
-    var questionEl = document.getElementById('question');
-    var Q8option1El = document.getElementById('option1');
-    var Q8option2El = document.getElementById('option2');
-    var Q8option3El = document.getElementById('option3');
-    var Q8option4El = document.getElementById('option4');
+    Q7option1El.style.display = 'none';
+    Q7option2El.style.display = 'none';
+    Q7option3El.style.display = 'none';
+    Q7option4El.style.display = 'none';
+    Q8option1El.style.display = 'flex';
+    Q8option2El.style.display = 'flex';
+    Q8option3El.style.display = 'flex';
+    Q8option4El.style.display = 'flex';
 
     questionEl.textContent = [question8Info.question];
     Q8option1El.textContent = [question8Info.opt1];
@@ -513,7 +618,7 @@ function showQuestion8() {
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
-    if (Q8ption2El.addEventListener('click', function () {
+    if (Q8option2El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
@@ -535,11 +640,14 @@ function showQuestion8() {
     }));
 }
 function showQuestion9() {
-    var questionEl = document.getElementById('question');
-    var Q9option1El = document.getElementById('option1');
-    var Q9option2El = document.getElementById('option2');
-    var Q9option3El = document.getElementById('option3');
-    var Q9option4El = document.getElementById('option4');
+    Q8option1El.style.display = 'none';
+    Q8option2El.style.display = 'none';
+    Q8option3El.style.display = 'none';
+    Q8option4El.style.display = 'none';
+    Q9option1El.style.display = 'flex';
+    Q9option2El.style.display = 'flex';
+    Q9option3El.style.display = 'flex';
+    Q9option4El.style.display = 'flex';
 
     questionEl.textContent = [question9Info.question];
     Q9option1El.textContent = [question9Info.opt1];
@@ -575,11 +683,14 @@ function showQuestion9() {
     }));
 }
 function showQuestion10() {
-    var questionEl = document.getElementById('question');
-    var Q10option1El = document.getElementById('option1');
-    var Q10option2El = document.getElementById('option2');
-    var Q10option3El = document.getElementById('option3');
-    var Q10option4El = document.getElementById('option4');
+    Q9option1El.style.display = 'none';
+    Q9option2El.style.display = 'none';
+    Q9option3El.style.display = 'none';
+    Q9option4El.style.display = 'none';
+    Q10option1El.style.display = 'flex';
+    Q10option2El.style.display = 'flex';
+    Q10option3El.style.display = 'flex';
+    Q10option4El.style.display = 'flex';
 
     questionEl.textContent = [question10Info.question];
     Q10option1El.textContent = [question10Info.opt1];
@@ -624,10 +735,10 @@ var players = [];
 function showResults() {
     //lets hide the question elements again
     questionEl.style.display = 'none';
-    option1El.style.display = 'none';
-    option2El.style.display = 'none';
-    option3El.style.display = 'none';
-    option4El.style.display = 'none';
+    Q10option1El.style.display = 'none';
+    Q10option2El.style.display = 'none';
+    Q10option3El.style.display = 'none';
+    Q10option4El.style.display = 'none';
     corrAnsEL.style.display = 'none';
 
     //and show the results window
