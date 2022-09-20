@@ -54,29 +54,9 @@ nav p {
     width: 20vw;
 }
 
-/* #option1 {
-    background-color: #ae88dc;
-    padding: 10px;
-    border-radius: 5px;
+#corrAns {
+    margin-left: 5px;
 }
-
-#option2 {
-    background-color: #ae88dc;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#option3 {
-    background-color: #ae88dc;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#option4 {
-    background-color: #ae88dc;
-    padding: 10px;
-    border-radius: 5px;
-} */
 
 #results {
     display: inline-flexbox;
@@ -105,9 +85,17 @@ nav p {
 
 #history {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 #history ul {
     list-style: none;
+}
+
+#history button {
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 25vw
 }

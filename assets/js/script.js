@@ -14,7 +14,9 @@ var resultsEl = document.getElementById('results')
 var submitEl = document.getElementById('submit');
 var nameInputEl = document.getElementById("nameInput");
 var historyEl = document.getElementById('history');
-var instructEl = document.getElementById('instruct')
+var instructEl = document.getElementById('instruct');
+var homeButton = document.getElementById('homePage');
+var clearButton = document.getElementById('clearScores');
 
 //here are the elements for the quiz portion, repeats a lot here for each question
 var questionEl = document.getElementById('question');
@@ -22,7 +24,7 @@ var option1El = document.getElementById('option1');
 var option2El = document.getElementById('option2');
 var option3El = document.getElementById('option3');
 var option4El = document.getElementById('option4');
-var corrAnsEL = document.getElementById('corrAns')
+var corrAnsEL = document.getElementById('corrAns');
 
 var Q2option1El = document.getElementById('Q2option1');
 var Q2option2El = document.getElementById('Q2option2');
@@ -76,10 +78,13 @@ var scoreTestEl = document.getElementById('scoreDisplayTest')
 //lets set all non opening elements to hidden
 resultsEl.style.display = 'none';
 historyEl.style.display = 'none';
+homeButton.style.display = 'none';
+
 option1El.style.display = 'none';
 option2El.style.display = 'none';
 option3El.style.display = 'none';
 option4El.style.display = 'none';
+
 
 Q2option1El.style.display = 'none';
 Q2option2El.style.display = 'none';
@@ -128,6 +133,8 @@ Q10option4El.style.display = 'none';
 //Lets start the quiz
 beginEl.addEventListener('click', start);
 historyLink.addEventListener('click', showHistory);
+homeButton.addEventListener('click', goHome);
+clearButton.addEventListener('click', clearScores);
 function start() {//when the quiz starts lets hide the title and start button
     beginQuiz();
     startTimer();
@@ -167,7 +174,9 @@ function scoreTracker() {
     scoreTestEl.textContent = score;
     // console.log(score)
 }
-
+function feedbackTimeOut() {
+    corrAnsEL.textContent = '';
+}
 //these questions aren't very good, I'm bad at coming up with questions
 var question1Info = {
     question: "Where do you put your JavaScript file in a HTML file?",
@@ -341,6 +350,8 @@ function showQuestion2() {
     Q2option3El.textContent = [question2Info.opt3];
     Q2option4El.textContent = [question2Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q2option1El.addEventListener('click', function () {
         score += 5
         console.log(score)
@@ -379,11 +390,15 @@ function showQuestion3() {
     Q3option2El.style.display = 'flex';
     Q3option3El.style.display = 'flex';
     Q3option4El.style.display = 'flex';
+
     questionEl.textContent = [question3Info.question];
     Q3option1El.textContent = [question3Info.opt1];
     Q3option2El.textContent = [question3Info.opt2];
     Q3option3El.textContent = [question3Info.opt3];
     Q3option4El.textContent = [question3Info.opt4];
+
+    setTimeout(feedbackTimeOut, 2000);
+
 
     if (Q3option1El.addEventListener('click', function () {
         if (secLeft > 0) {
@@ -429,6 +444,8 @@ function showQuestion4() {
     Q4option2El.textContent = [question4Info.opt2];
     Q4option3El.textContent = [question4Info.opt3];
     Q4option4El.textContent = [question4Info.opt4];
+    setTimeout(feedbackTimeOut, 2000);
+
 
     if (Q4option1El.addEventListener('click', function () {
         score += 5;
@@ -474,6 +491,8 @@ function showQuestion5() {
     Q5option2El.textContent = [question5Info.opt2];
     Q5option3El.textContent = [question5Info.opt3];
     Q5option4El.textContent = [question5Info.opt4];
+
+    setTimeout(feedbackTimeOut, 2000);
 
     if (Q5option1El.addEventListener('click', function () {
         if (secLeft > 0) {
@@ -521,6 +540,8 @@ function showQuestion6() {
     Q6option3El.textContent = [question6Info.opt3];
     Q6option4El.textContent = [question6Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q6option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
@@ -567,6 +588,8 @@ function showQuestion7() {
     Q7option3El.textContent = [question7Info.opt3];
     Q7option4El.textContent = [question7Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q7option1El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
@@ -611,6 +634,8 @@ function showQuestion8() {
     Q8option3El.textContent = [question8Info.opt3];
     Q8option4El.textContent = [question8Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q8option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
@@ -654,6 +679,9 @@ function showQuestion9() {
     Q9option2El.textContent = [question9Info.opt2];
     Q9option3El.textContent = [question9Info.opt3];
     Q9option4El.textContent = [question9Info.opt4];
+
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q9option1El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
@@ -698,6 +726,8 @@ function showQuestion10() {
     Q10option3El.textContent = [question10Info.opt3];
     Q10option4El.textContent = [question10Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q10option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
@@ -732,9 +762,56 @@ historyEl.addEventListener("click", showResults)
 var historyList = document.getElementById("previousScoresList")
 var scoreEl = document.getElementById('scoreDisplay');
 var players = [];
+var allOptsEl = document.querySelectorAll('.allOptions')
 function showResults() {
     //lets hide the question elements again
     questionEl.style.display = 'none';
+
+    option1El.style.display = 'none';
+    option2El.style.display = 'none';
+    option3El.style.display = 'none';
+    option4El.style.display = 'none';
+
+    Q2option1El.style.display = 'none';
+    Q2option2El.style.display = 'none';
+    Q2option3El.style.display = 'none';
+    Q2option4El.style.display = 'none';
+
+    Q3option1El.style.display = 'none';
+    Q3option2El.style.display = 'none';
+    Q3option3El.style.display = 'none';
+    Q3option4El.style.display = 'none';
+
+    Q4option1El.style.display = 'none';
+    Q4option2El.style.display = 'none';
+    Q4option3El.style.display = 'none';
+    Q4option4El.style.display = 'none';
+
+    Q5option1El.style.display = 'none';
+    Q5option2El.style.display = 'none';
+    Q5option3El.style.display = 'none';
+    Q5option4El.style.display = 'none';
+
+    Q6option1El.style.display = 'none';
+    Q6option2El.style.display = 'none';
+    Q6option3El.style.display = 'none';
+    Q6option4El.style.display = 'none';
+
+    Q7option1El.style.display = 'none';
+    Q7option2El.style.display = 'none';
+    Q7option3El.style.display = 'none';
+    Q7option4El.style.display = 'none';
+
+    Q8option1El.style.display = 'none';
+    Q8option2El.style.display = 'none';
+    Q8option3El.style.display = 'none';
+    Q8option4El.style.display = 'none';
+
+    Q9option1El.style.display = 'none';
+    Q9option2El.style.display = 'none';
+    Q9option3El.style.display = 'none';
+    Q9option4El.style.display = 'none';
+
     Q10option1El.style.display = 'none';
     Q10option2El.style.display = 'none';
     Q10option3El.style.display = 'none';
@@ -757,42 +834,52 @@ function storeResults() {
         userName: nameInputEl.value,
         userScore: score
     }
-    console.log(myScore)
-    console.log(localStorage.getItem("myScoreLocal"))
-    console.log(prevScores)
-
-
     prevScores.push(myScore)
     localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
     resultsEl.style.display = 'none';
     historyEl.style.display = 'flex';
+    homeButton.style.display = 'block';
     var playerName = '';
     var playerScore = '';
+
+
     for (var i = 0; i < prevScores.length; i++) {
         var playerName = (prevScores[i].userName);
         var playerScore = (prevScores[i].userScore);
 
         var li = document.createElement("li");
+        //puts it togehter
         li.textContent = playerName + ': ' + playerScore + ' points';
 
         historyList.appendChild(li)
+
     }
-    // showHistory()
 }
 function showHistory() {
+    titleEl.style.display = 'none';
+    instructEl.style.display = 'none'
+    beginEl.style.display = 'none';
     resultsEl.style.display = 'none';
     historyEl.style.display = 'flex';
-    for (var i = 0; i < prevScores.length; i++) {
-        var playerName = (prevScores.userName[i]);
-        var playerScore = (prevScores.userScore[i]);
+    // homeButton.style.display = 'none';
+    storedHistory = historyList
 
-        var li = document.createElement("li");
-        li.textContent = playerName + ': ' + playerScore + ' points';
-
-        historyList.appendChild(li)
-    }
 
 }
+
+function goHome() {
+    titleEl.style.display = 'flex';
+    instructEl.style.display = 'flex'
+    beginEl.style.display = 'flex';
+    resultsEl.style.display = 'none';
+    historyEl.style.display = 'none';
+}
+
+function clearScores() {
+    prevScores.clear()
+    localStorage.clear()
+}
+
 
 //build a function to store the player name and score
 //hey put in your name here
