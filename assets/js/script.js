@@ -28,12 +28,12 @@ var corrAnsEL = document.getElementById('corrAns')
 var scoreTestEl = document.getElementById('scoreDisplayTest')
 
 //lets set all non opening elements to hidden
-// resultsEl.style.display = 'none';
-// historyEl.style.display = 'none';
-// option1El.style.display = 'none';
-// option2El.style.display = 'none';
-// option3El.style.display = 'none';
-// option4El.style.display = 'none';
+resultsEl.style.display = 'none';
+historyEl.style.display = 'none';
+option1El.style.display = 'none';
+option2El.style.display = 'none';
+option3El.style.display = 'none';
+option4El.style.display = 'none';
 //Lets start the quiz
 beginEl.addEventListener('click', start)
 function start() {//when the quiz starts lets hide the title and start button
@@ -616,7 +616,7 @@ function showResults() {
     corrAnsEL.style.display = 'none';
 
     //and show the results window
-    resultsEl.style.display = 'flex'
+    resultsEl.style.display = 'block'
     scoreEl.textContent = "Your final score is " + score;
     submitEl.addEventListener("click", storeResults);
 }
@@ -643,7 +643,7 @@ function storeResults() {
 
 function showHistory() {
     resultsEl.style.display = 'none';
-    historyEl.style.display = 'block';
+    historyEl.style.display = 'flex';
     for (var i = 0; i < prevScores.length; i++) {
         var player = prevScores[i];
 
