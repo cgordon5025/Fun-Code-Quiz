@@ -19,4 +19,4 @@ I used this site to base some of my JavaScript questions on
 N/A
 
 ## Link to Application
-![Link to Application](https://cgordon5025@github.io/Fun-Code-Quiz)
+![Link to Application](https://cgordon5025.github.io/Fun-Code-Quiz/)
