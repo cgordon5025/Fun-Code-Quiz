@@ -167,7 +167,9 @@ function scoreTracker() {
     scoreTestEl.textContent = score;
     // console.log(score)
 }
-
+function feedbackTimeOut() {
+    corrAnsEL.textContent = '';
+}
 //these questions aren't very good, I'm bad at coming up with questions
 var question1Info = {
     question: "Where do you put your JavaScript file in a HTML file?",
@@ -341,6 +343,8 @@ function showQuestion2() {
     Q2option3El.textContent = [question2Info.opt3];
     Q2option4El.textContent = [question2Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q2option1El.addEventListener('click', function () {
         score += 5
         console.log(score)
@@ -379,11 +383,15 @@ function showQuestion3() {
     Q3option2El.style.display = 'flex';
     Q3option3El.style.display = 'flex';
     Q3option4El.style.display = 'flex';
+
     questionEl.textContent = [question3Info.question];
     Q3option1El.textContent = [question3Info.opt1];
     Q3option2El.textContent = [question3Info.opt2];
     Q3option3El.textContent = [question3Info.opt3];
     Q3option4El.textContent = [question3Info.opt4];
+
+    setTimeout(feedbackTimeOut, 2000);
+
 
     if (Q3option1El.addEventListener('click', function () {
         if (secLeft > 0) {
@@ -429,6 +437,8 @@ function showQuestion4() {
     Q4option2El.textContent = [question4Info.opt2];
     Q4option3El.textContent = [question4Info.opt3];
     Q4option4El.textContent = [question4Info.opt4];
+    setTimeout(feedbackTimeOut, 2000);
+
 
     if (Q4option1El.addEventListener('click', function () {
         score += 5;
@@ -474,6 +484,8 @@ function showQuestion5() {
     Q5option2El.textContent = [question5Info.opt2];
     Q5option3El.textContent = [question5Info.opt3];
     Q5option4El.textContent = [question5Info.opt4];
+
+    setTimeout(feedbackTimeOut, 2000);
 
     if (Q5option1El.addEventListener('click', function () {
         if (secLeft > 0) {
@@ -521,6 +533,8 @@ function showQuestion6() {
     Q6option3El.textContent = [question6Info.opt3];
     Q6option4El.textContent = [question6Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q6option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
@@ -567,6 +581,8 @@ function showQuestion7() {
     Q7option3El.textContent = [question7Info.opt3];
     Q7option4El.textContent = [question7Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q7option1El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
@@ -611,6 +627,8 @@ function showQuestion8() {
     Q8option3El.textContent = [question8Info.opt3];
     Q8option4El.textContent = [question8Info.opt4];
 
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q8option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
@@ -654,6 +672,9 @@ function showQuestion9() {
     Q9option2El.textContent = [question9Info.opt2];
     Q9option3El.textContent = [question9Info.opt3];
     Q9option4El.textContent = [question9Info.opt4];
+
+    setTimeout(feedbackTimeOut, 2000);
+
     if (Q9option1El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
@@ -697,6 +718,8 @@ function showQuestion10() {
     Q10option2El.textContent = [question10Info.opt2];
     Q10option3El.textContent = [question10Info.opt3];
     Q10option4El.textContent = [question10Info.opt4];
+
+    setTimeout(feedbackTimeOut, 2000);
 
     if (Q10option1El.addEventListener('click', function () {
         if (secLeft > 0) {
@@ -757,11 +780,6 @@ function storeResults() {
         userName: nameInputEl.value,
         userScore: score
     }
-    console.log(myScore)
-    console.log(localStorage.getItem("myScoreLocal"))
-    console.log(prevScores)
-
-
     prevScores.push(myScore)
     localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
     resultsEl.style.display = 'none';
@@ -777,22 +795,8 @@ function storeResults() {
 
         historyList.appendChild(li)
     }
-    // showHistory()
 }
-function showHistory() {
-    resultsEl.style.display = 'none';
-    historyEl.style.display = 'flex';
-    for (var i = 0; i < prevScores.length; i++) {
-        var playerName = (prevScores.userName[i]);
-        var playerScore = (prevScores.userScore[i]);
 
-        var li = document.createElement("li");
-        li.textContent = playerName + ': ' + playerScore + ' points';
-
-        historyList.appendChild(li)
-    }
-
-}
 
 //build a function to store the player name and score
 //hey put in your name here
