@@ -85,9 +85,17 @@ nav p {
 
 #history {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 #history ul {
     list-style: none;
+}
+
+#history button {
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 25vw
 }
