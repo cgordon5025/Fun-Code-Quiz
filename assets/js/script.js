@@ -62,8 +62,10 @@ function startTimer() {
         timerEl.textContent = ["Time: " + secLeft];
         secLeft--;;
         //if they answer wrong remove 15
-        if (secLeft === 0) {
-            clearInterval(interval)
+        if (secLeft < 1) {
+            clearInterval(interval);
+            timerEl.textContent = "Time's Up";
+            showResults()
         }
     }, 1000);
 }
@@ -71,6 +73,7 @@ function startTimer() {
 function scoreTracker() {
     scoreEl.textContent = score;
     scoreTestEl.textContent = score;
+    // console.log(score)
 }
 
 //these questions aren't very good, I'm bad at coming up with questions
@@ -129,7 +132,6 @@ var question5Info = {
     opt3Answer: false,
     opt4Answer: true
 }
-
 var question6Info = {
     question: "Which is NOT a type of loop?",
     opt1: "For",
@@ -141,7 +143,6 @@ var question6Info = {
     opt3Answer: true,
     opt4Answer: false
 }
-
 var question7Info = {
     question: "How do you comment something in JavaScript?",
     opt1: "//This is a comment",
@@ -191,6 +192,7 @@ var question10Info = {
 function showQuestion1() {
     //lets call down the variables just in case
     var questionEl = document.getElementById('question');
+    //creating unique buttons because of weird error
     var option1El = document.getElementById('option1');
     var option2El = document.getElementById('option2');
     var option3El = document.getElementById('option3');
@@ -202,6 +204,9 @@ function showQuestion1() {
     option3El.textContent = [question1Info.opt3];
     option4El.textContent = [question1Info.opt4];
 
+
+    //score empty array
+
     if (option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
@@ -212,7 +217,7 @@ function showQuestion1() {
         showQuestion2();
     }));
     if (option2El.addEventListener('click', function () {
-        score += 5;
+        score += 5
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion2();
@@ -234,38 +239,40 @@ function showQuestion1() {
 }
 function showQuestion2() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q2option1El = document.getElementById('option1');
+    var Q2option2El = document.getElementById('option2');
+    var Q2option3El = document.getElementById('option3');
+    var Q2option4El = document.getElementById('option4');
 
     questionEl.textContent = [question2Info.question];
-    option1El.textContent = [question2Info.opt1];
-    option2El.textContent = [question2Info.opt2];
-    option3El.textContent = [question2Info.opt3];
-    option4El.textContent = [question2Info.opt4];
+    Q2option1El.textContent = [question2Info.opt1];
+    Q2option2El.textContent = [question2Info.opt2];
+    Q2option3El.textContent = [question2Info.opt3];
+    Q2option4El.textContent = [question2Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
-        score += 5;
+    if (Q2option1El.addEventListener('click', function () {
+        score += 5
+        console.log(score)
+        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion3();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q2option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion3();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q2option3El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion3();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q2option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -275,38 +282,39 @@ function showQuestion2() {
 }
 function showQuestion3() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q3option1El = document.getElementById('option1');
+    var Q3option2El = document.getElementById('option2');
+    var Q3option3El = document.getElementById('option3');
+    var Q3option4El = document.getElementById('option4');
 
     questionEl.textContent = [question3Info.question];
-    option1El.textContent = [question3Info.opt1];
-    option2El.textContent = [question3Info.opt2];
-    option3El.textContent = [question3Info.opt3];
-    option4El.textContent = [question3Info.opt4];
+    Q3option1El.textContent = [question3Info.opt1];
+    Q3option2El.textContent = [question3Info.opt2];
+    Q3option3El.textContent = [question3Info.opt3];
+    Q3option4El.textContent = [question3Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
+    if (Q3option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q3option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q3option3El.addEventListener('click', function () {
         score += 5;
+        console.log(score)
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion4();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q3option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -316,38 +324,41 @@ function showQuestion3() {
 }
 function showQuestion4() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q4option1El = document.getElementById('option1');
+    var Q4option2El = document.getElementById('option2');
+    var Q4option3El = document.getElementById('option3');
+    var Q4option4El = document.getElementById('option4');
 
     questionEl.textContent = [question4Info.question];
-    option1El.textContent = [question4Info.opt1];
-    option2El.textContent = [question4Info.opt2];
-    option3El.textContent = [question4Info.opt3];
-    option4El.textContent = [question4Info.opt4];
+    Q4option1El.textContent = [question4Info.opt1];
+    Q4option2El.textContent = [question4Info.opt2];
+    Q4option3El.textContent = [question4Info.opt3];
+    Q4option4El.textContent = [question4Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
-        score += 5;
+    if (Q4option1El.addEventListener('click', function () {
+        score += 5
+        console.log(score);
+        var count = 0;
+        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion5();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q4option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q4option3El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q4option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -357,40 +368,42 @@ function showQuestion4() {
 }
 function showQuestion5() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q5option1El = document.getElementById('option1');
+    var Q5option2El = document.getElementById('option2');
+    var Q5option3El = document.getElementById('option3');
+    var Q5option4El = document.getElementById('option4');
 
     questionEl.textContent = [question5Info.question];
-    option1El.textContent = [question5Info.opt1];
-    option2El.textContent = [question5Info.opt2];
-    option3El.textContent = [question5Info.opt3];
-    option4El.textContent = [question5Info.opt4];
+    Q5option1El.textContent = [question5Info.opt1];
+    Q5option2El.textContent = [question5Info.opt2];
+    Q5option3El.textContent = [question5Info.opt3];
+    Q5option4El.textContent = [question5Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
+    if (Q5option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q5option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q5option3El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
-    if (option4El.addEventListener('click', function () {
-        score += 5;
+    if (Q5option4El.addEventListener('click', function () {
+        score += 5
+        console.log(score)
+        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion6();
@@ -398,38 +411,40 @@ function showQuestion5() {
 }
 function showQuestion6() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q6option1El = document.getElementById('option1');
+    var Q6option2El = document.getElementById('option2');
+    var Q6option3El = document.getElementById('option3');
+    var Q6option4El = document.getElementById('option4');
 
     questionEl.textContent = [question6Info.question];
-    option1El.textContent = [question6Info.opt1];
-    option2El.textContent = [question6Info.opt2];
-    option3El.textContent = [question6Info.opt3];
-    option4El.textContent = [question6Info.opt4];
+    Q6option1El.textContent = [question6Info.opt1];
+    Q6option2El.textContent = [question6Info.opt2];
+    Q6option3El.textContent = [question6Info.opt3];
+    Q6option4El.textContent = [question6Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
+    if (Q6option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q6option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
     }));
-    if (option3El.addEventListener('click', function () {
-        score += 5;
+    if (Q6option3El.addEventListener('click', function () {
+        score = score + 5;
+        console.log(score)
+        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion7();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q6option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -439,38 +454,38 @@ function showQuestion6() {
 }
 function showQuestion7() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q7option1El = document.getElementById('option1');
+    var Q7option2El = document.getElementById('option2');
+    var Q7option3El = document.getElementById('option3');
+    var Q7option4El = document.getElementById('option4');
 
     questionEl.textContent = [question7Info.question];
-    option1El.textContent = [question7Info.opt1];
-    option2El.textContent = [question7Info.opt2];
-    option3El.textContent = [question7Info.opt3];
-    option4El.textContent = [question7Info.opt4];
+    Q7option1El.textContent = [question7Info.opt1];
+    Q7option2El.textContent = [question7Info.opt2];
+    Q7option3El.textContent = [question7Info.opt3];
+    Q7option4El.textContent = [question7Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
+    if (Q7option1El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion8();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q7option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q7option3El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q7option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -480,38 +495,38 @@ function showQuestion7() {
 }
 function showQuestion8() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q8option1El = document.getElementById('option1');
+    var Q8option2El = document.getElementById('option2');
+    var Q8option3El = document.getElementById('option3');
+    var Q8option4El = document.getElementById('option4');
 
     questionEl.textContent = [question8Info.question];
-    option1El.textContent = [question8Info.opt1];
-    option2El.textContent = [question8Info.opt2];
-    option3El.textContent = [question8Info.opt3];
-    option4El.textContent = [question8Info.opt4];
+    Q8option1El.textContent = [question8Info.opt1];
+    Q8option2El.textContent = [question8Info.opt2];
+    Q8option3El.textContent = [question8Info.opt3];
+    Q8option4El.textContent = [question8Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
+    if (Q8option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q8ption2El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion9();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q8option3El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q8option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -521,37 +536,37 @@ function showQuestion8() {
 }
 function showQuestion9() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q9option1El = document.getElementById('option1');
+    var Q9option2El = document.getElementById('option2');
+    var Q9option3El = document.getElementById('option3');
+    var Q9option4El = document.getElementById('option4');
 
     questionEl.textContent = [question9Info.question];
-    option1El.textContent = [question9Info.opt1];
-    option2El.textContent = [question9Info.opt2];
-    option3El.textContent = [question9Info.opt3];
-    option4El.textContent = [question9Info.opt4];
-    if (option1El.addEventListener('click', function () {
+    Q9option1El.textContent = [question9Info.opt1];
+    Q9option2El.textContent = [question9Info.opt2];
+    Q9option3El.textContent = [question9Info.opt3];
+    Q9option4El.textContent = [question9Info.opt4];
+    if (Q9option1El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion10();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q9option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q9option3El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q9option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -561,38 +576,38 @@ function showQuestion9() {
 }
 function showQuestion10() {
     var questionEl = document.getElementById('question');
-    var option1El = document.getElementById('option1');
-    var option2El = document.getElementById('option2');
-    var option3El = document.getElementById('option3');
-    var option4El = document.getElementById('option4');
+    var Q10option1El = document.getElementById('option1');
+    var Q10option2El = document.getElementById('option2');
+    var Q10option3El = document.getElementById('option3');
+    var Q10option4El = document.getElementById('option4');
 
     questionEl.textContent = [question10Info.question];
-    option1El.textContent = [question10Info.opt1];
-    option2El.textContent = [question10Info.opt2];
-    option3El.textContent = [question10Info.opt3];
-    option4El.textContent = [question10Info.opt4];
+    Q10option1El.textContent = [question10Info.opt1];
+    Q10option2El.textContent = [question10Info.opt2];
+    Q10option3El.textContent = [question10Info.opt3];
+    Q10option4El.textContent = [question10Info.opt4];
 
-    if (option1El.addEventListener('click', function () {
+    if (Q10option1El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showResults();
     }));
-    if (option2El.addEventListener('click', function () {
+    if (Q10option2El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showResults();
     }));
-    if (option3El.addEventListener('click', function () {
+    if (Q10option3El.addEventListener('click', function () {
         score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showResults();
     }));
-    if (option4El.addEventListener('click', function () {
+    if (Q10option4El.addEventListener('click', function () {
         if (secLeft > 0) {
             secLeft -= 10;
         }
@@ -623,7 +638,9 @@ function showResults() {
 if (!localStorage.getItem("myScoreLocal")) {
     var prevScores = [];
 } else { var prevScores = JSON.parse(localStorage.getItem("myScoreLocal")) }
-console.log("this is" + prevScores)
+console.log(prevScores)
+console.log(prevScores[2].userName)
+
 function storeResults() {
     var myScore = {
         userName: nameInputEl.value,
@@ -636,22 +653,34 @@ function storeResults() {
 
     prevScores.push(myScore)
     localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
+    resultsEl.style.display = 'none';
+    historyEl.style.display = 'flex';
+    var playerName = '';
+    var playerScore = '';
+    for (var i = 0; i < prevScores.length; i++) {
+        var playerName = (prevScores[i].userName);
+        var playerScore = (prevScores[i].userScore);
 
+        var li = document.createElement("li");
+        li.textContent = playerName + ': ' + playerScore + ' points';
 
-    showHistory()
+        historyList.appendChild(li)
+    }
+    // showHistory()
 }
-
 function showHistory() {
     resultsEl.style.display = 'none';
     historyEl.style.display = 'flex';
     for (var i = 0; i < prevScores.length; i++) {
-        var player = prevScores[i];
+        var playerName = (prevScores.userName[i]);
+        var playerScore = (prevScores.userScore[i]);
 
         var li = document.createElement("li");
-        li.textContent = player;
+        li.textContent = playerName + ': ' + playerScore + ' points';
 
         historyList.appendChild(li)
     }
+
 }
 
 //build a function to store the player name and score
