@@ -1,28 +1,33 @@
-
-nav{
+nav {
     display: flex;
     justify-content: space-between;
 }
-nav p{
+
+nav p {
     display: flex;
 }
+
 .openingInstruct {
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
 }
+
 #title {
     display: flex;
     justify-content: center;
 }
+
 .openingInstruct p {
     display: flex;
     justify-content: center;
 }
-#beginContainer{
+
+#beginContainer {
     display: flex;
     justify-content: center;
 }
+
 #begin {
     margin: 10px;
     background-color: #ae88dc;
@@ -38,10 +43,43 @@ nav p{
     justify-content: center;
 }
 
-.options button{
+.options button {
     width: 20vw;
 }
 
-.options li{
+.options li {
     list-style: none;
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#results {
+    display: inline-flexbox;
+    justify-content: center;
+}
+
+#scoreDisplay {
+    display: flex;
+    justify-content: center;
+}
+
+.inputName {
+    display: flex;
+    justify-content: center;
+}
+
+#submitContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#submit {
+    margin-top: 10px;
+}
+
+
+#history {
+    display: flex;
+    justify-content: center;
 }

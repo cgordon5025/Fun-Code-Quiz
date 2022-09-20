@@ -24,13 +24,16 @@ var option3El = document.getElementById('option3');
 var option4El = document.getElementById('option4');
 var corrAnsEL = document.getElementById('corrAns')
 
+//remove after debugging
+var scoreTestEl = document.getElementById('scoreDisplayTest')
+
 //lets set all non opening elements to hidden
-resultsEl.style.display = 'none';
-historyEl.style.display = 'none';
-option1El.style.display = 'none';
-option2El.style.display = 'none';
-option3El.style.display = 'none';
-option4El.style.display = 'none';
+// resultsEl.style.display = 'none';
+// historyEl.style.display = 'none';
+// option1El.style.display = 'none';
+// option2El.style.display = 'none';
+// option3El.style.display = 'none';
+// option4El.style.display = 'none';
 //Lets start the quiz
 beginEl.addEventListener('click', start)
 function start() {//when the quiz starts lets hide the title and start button
@@ -67,6 +70,7 @@ function startTimer() {
 //this line can come out
 function scoreTracker() {
     scoreEl.textContent = score;
+    scoreTestEl.textContent = score;
 }
 
 //these questions aren't very good, I'm bad at coming up with questions
