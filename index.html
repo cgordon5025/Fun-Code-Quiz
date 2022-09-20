@@ -25,7 +25,7 @@
     </div>
   </header>
   <div class="options">
-    <p id="scoreDisplay">0</p>
+
     <h2 id="question"></h2>
     <ul>
       <li><button id="option1"></button></li>
@@ -36,8 +36,16 @@
   </div>
 
   <div id="results">
-    <p></p>
+    <p id="scoreDisplay"></p>
+    <div class="inputName">
+      <input placeholder="name" id="nameInput" />
+    </div>
+    <button id="submit"></button>
     <!-- <button id="submit"></button> -->
+  </div>
+
+  <div id="history">
+    <ul id="previousScoresList"></ul>
   </div>
   <script src="./assets/js/script.js"></script>
 </body>
