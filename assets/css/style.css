@@ -39,7 +39,6 @@ nav p {
 
 .options {
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
 }
 
@@ -49,6 +48,27 @@ nav p {
 
 .options li {
     list-style: none;
+}
+
+#option1 {
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#option2 {
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#option3 {
+    background-color: #ae88dc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#option4 {
     background-color: #ae88dc;
     padding: 10px;
     border-radius: 5px;
@@ -82,4 +102,8 @@ nav p {
 #history {
     display: flex;
     justify-content: center;
+}
+
+#history ul {
+    list-style: none;
 }
