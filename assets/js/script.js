@@ -14,6 +14,7 @@ var resultsEl = document.getElementById('results')
 var submitEl = document.getElementById('submit');
 var nameInputEl = document.getElementById("nameInput");
 var historyEl = document.getElementById('history');
+var instructEl = document.getElementById('instruct')
 
 //here are the elements for the quiz portion
 var questionEl = document.getElementById('question');
@@ -43,7 +44,10 @@ function start() {//when the quiz starts lets hide the title and start button
 }
 
 function beginQuiz() {
+    //reset the score if they play again
+    score = 0
     titleEl.style.display = 'none';
+    instructEl.style.display = 'none'
     beginEl.style.display = 'none';
 
 }
@@ -92,7 +96,7 @@ var question3Info = {
     question: "Which is the correct way to declare a function?",
     opt1: "Function = myFunction(){}",
     opt2: "var myFunction",
-    opt3: "function myFunction()",
+    opt3: "function myFunction(){}",
     opt4: "myFunction()",
     opt1Answer: false,
     opt2Answer: false,
@@ -135,7 +139,7 @@ var question6Info = {
 }
 
 var question7Info = {
-    question: "How do you comment somehting in JavaScript?",
+    question: "How do you comment something in JavaScript?",
     opt1: "//This is a comment",
     opt2: "<!-- This is a comment-->",
     opt3: "/*This is a comment*/",
@@ -157,7 +161,7 @@ var question8Info = {
     opt4Answer: false
 }
 var question9Info = {
-    question: "What is the event thta occurs when a user clicks on an element?",
+    question: "What is the event that occurs when a user clicks on an element?",
     opt1: "onclick",
     opt2: "mouseover",
     opt3: "mousemove",
@@ -168,7 +172,7 @@ var question9Info = {
     opt4Answer: false
 }
 var question10Info = {
-    question: "Which variable is named in accordance to Camel Casw?",
+    question: "Which variable is named in accordance to Camel Case?",
     opt1: "myvariable",
     opt2: "MyVariable",
     opt3: "myVariable",
@@ -193,7 +197,6 @@ function showQuestion1() {
     option2El.textContent = [question1Info.opt2];
     option3El.textContent = [question1Info.opt3];
     option4El.textContent = [question1Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
         if (secLeft > 0) {
@@ -205,21 +208,21 @@ function showQuestion1() {
         showQuestion2();
     }));
     if (option2El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion2();
     }));
     if (option3El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion2();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion2();
@@ -237,33 +240,30 @@ function showQuestion2() {
     option2El.textContent = [question2Info.opt2];
     option3El.textContent = [question2Info.opt3];
     option4El.textContent = [question2Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
-        corrAnsEL, this.textContent = "Correct";
+        corrAnsEL.textContent = "Correct";
         showQuestion3();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
-
         showQuestion3();
     }));
     if (option3El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
-
         showQuestion3();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion3();
@@ -281,31 +281,30 @@ function showQuestion3() {
     option2El.textContent = [question3Info.opt2];
     option3El.textContent = [question3Info.opt3];
     option4El.textContent = [question3Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
     }));
     if (option3El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion4();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
@@ -323,31 +322,30 @@ function showQuestion4() {
     option2El.textContent = [question4Info.opt2];
     option3El.textContent = [question4Info.opt3];
     option4El.textContent = [question4Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion5();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
     }));
     if (option3El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
@@ -365,31 +363,30 @@ function showQuestion5() {
     option2El.textContent = [question5Info.opt2];
     option3El.textContent = [question5Info.opt3];
     option4El.textContent = [question5Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
     if (option3El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
     if (option4El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion6();
@@ -407,31 +404,30 @@ function showQuestion6() {
     option2El.textContent = [question6Info.opt2];
     option3El.textContent = [question6Info.opt3];
     option4El.textContent = [question6Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
     }));
     if (option3El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion7();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
@@ -449,31 +445,30 @@ function showQuestion7() {
     option2El.textContent = [question7Info.opt2];
     option3El.textContent = [question7Info.opt3];
     option4El.textContent = [question7Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion8();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
     }));
     if (option3El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
@@ -491,31 +486,30 @@ function showQuestion8() {
     option2El.textContent = [question8Info.opt2];
     option3El.textContent = [question8Info.opt3];
     option4El.textContent = [question8Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
     if (option2El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion9();
     }));
     if (option3El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
@@ -533,30 +527,29 @@ function showQuestion9() {
     option2El.textContent = [question9Info.opt2];
     option3El.textContent = [question9Info.opt3];
     option4El.textContent = [question9Info.opt4];
-    corrAnsEL.textContent = '';
     if (option1El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion10();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
     }));
     if (option3El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
@@ -574,31 +567,30 @@ function showQuestion10() {
     option2El.textContent = [question10Info.opt2];
     option3El.textContent = [question10Info.opt3];
     option4El.textContent = [question10Info.opt4];
-    corrAnsEL.textContent = '';
 
     if (option1El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showResults();
     }));
     if (option2El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showResults();
     }));
     if (option3El.addEventListener('click', function () {
-        score++;
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showResults();
     }));
     if (option4El.addEventListener('click', function () {
         if (secLeft > 0) {
-            sec -= 10;
+            secLeft -= 10;
         }
         corrAnsEL.textContent = "Wrong!";
         showResults();
@@ -611,26 +603,43 @@ var historyList = document.getElementById("previousScoresList")
 var scoreEl = document.getElementById('scoreDisplay');
 var players = [];
 function showResults() {
+    //lets hide the question elements again
+    questionEl.style.display = 'none';
+    option1El.style.display = 'none';
+    option2El.style.display = 'none';
+    option3El.style.display = 'none';
+    option4El.style.display = 'none';
+    corrAnsEL.style.display = 'none';
+
+    //and show the results window
     resultsEl.style.display = 'flex'
     scoreEl.textContent = "Your final score is " + score;
     submitEl.addEventListener("click", storeResults);
 }
-
+if (!localStorage.getItem("myScoreLocal")) {
+    var prevScores = [];
+} else { var prevScores = JSON.parse(localStorage.getItem("myScoreLocal")) }
+console.log("this is" + prevScores)
 function storeResults() {
     var myScore = {
         userName: nameInputEl.value,
         userScore: score
     }
-    if (!localStorage.getItem("myScoreLocal")) {
-        var prevScores = [];
-    } else var prevScores = JSON.parse(localStorage.getItem("myScoreLocal"))
+    console.log(myScore)
+    console.log(localStorage.getItem("myScoreLocal"))
+    console.log(prevScores)
 
-    localStorage.setItem("myScoreLocal", JSON, stringify(myScore))
+
     prevScores.push(myScore)
+    localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
+
+
+    showHistory()
 }
 
 function showHistory() {
-    historyEl.style.display = 'block'
+    resultsEl.style.display = 'none';
+    historyEl.style.display = 'block';
     for (var i = 0; i < prevScores.length; i++) {
         var player = prevScores[i];
 

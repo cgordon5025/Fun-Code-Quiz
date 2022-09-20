@@ -15,9 +15,12 @@
       <p id="viewHistory">View Highscores</p>
       <p id="timerDisplay">60</p>
     </nav>
+    <p id="scoreDisplay">0</p>
+
     <div class="openingInstruct">
       <h1 id="title">Coding Quiz Challenge</h1>
-      <p>Try to answer the following code-related question within the time limit. keep in mind that incorrect answers
+      <p id='instruct'>Try to answer the following code-related question within the time limit. keep in mind that
+        incorrect answers
         will penalize your score/time by ten seconds!</p>
       <div id="beginContainer">
         <button id="begin">Begin</button>
@@ -41,11 +44,12 @@
     <div class="inputName">
       <input placeholder="name" id="nameInput" />
     </div>
-    <button id="submit"></button>
+    <button id="submit">Submit</button>
     <!-- <button id="submit"></button> -->
   </div>
 
   <div id="history">
+    <h2> High Scores</h2>
     <ul id="previousScoresList"></ul>
   </div>
   <script src="./assets/js/script.js"></script>
