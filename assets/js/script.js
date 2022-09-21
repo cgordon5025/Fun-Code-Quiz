@@ -1,8 +1,11 @@
 var score = 0
 var secLeft = 59
+var interval;
+var timeResetCount = 0;
 //Here I am calling down elements by ID, keeping them all here
 // here are the vars that are set at the begining
 // Lets make all the variables
+
 var historyList = document.getElementById("previousScoresList")
 var scoreEl = document.getElementById('scoreDisplay');
 var players = [];
@@ -22,11 +25,12 @@ var clearButton = document.getElementById('clearScores');
 
 // here are the elements for the quiz portion, repeats a lot here for each question
 var questionEl = document.getElementById('question');
+var corrAnsEL = document.getElementById('corrAns');
+
 var option1El = document.getElementById('option1');
 var option2El = document.getElementById('option2');
 var option3El = document.getElementById('option3');
 var option4El = document.getElementById('option4');
-var corrAnsEL = document.getElementById('corrAns');
 
 var Q2option1El = document.getElementById('Q2option1');
 var Q2option2El = document.getElementById('Q2option2');
@@ -78,6 +82,10 @@ var Q10option4El = document.getElementById('Q10option4');
 var scoreTestEl = document.getElementById('scoreDisplayTest')
 
 //lets set all non opening elements to hidden
+
+questionEl.style.display = 'none';
+corrAnsEL.style.display = 'none';
+
 resultsEl.style.display = 'none';
 historyEl.style.display = 'none';
 homeButton.style.display = 'none';
@@ -132,6 +140,8 @@ Q10option1El.style.display = 'none';
 Q10option2El.style.display = 'none';
 Q10option3El.style.display = 'none';
 Q10option4El.style.display = 'none';
+// hideAllQuestions()
+
 //Lets start the quiz
 beginEl.addEventListener('click', start);
 
@@ -148,7 +158,9 @@ function homePage() {
     nameInputEl.style.display = 'none';
     historyEl.style.display = 'none'
     scoreEl.style.display = 'none'
-
+    timerEl.textContent = '';
+    score = 0;
+    window.location.reload();
 }
 function start() {//when the quiz starts lets hide the title and start button
     beginQuiz();
@@ -164,6 +176,7 @@ function start() {//when the quiz starts lets hide the title and start button
 function beginQuiz() {
     //reset the score if they play again
     score = 0
+    timeResetCount = 0
     titleEl.style.display = 'none';
     instructEl.style.display = 'none'
     beginEl.style.display = 'none';
@@ -172,6 +185,8 @@ function beginQuiz() {
 //Lets display the questions 
 // this is the base of the timer, can add hte in penalty for wrong answers in the space where i determine the right answer and add points
 function startTimer() {
+    clearInterval(interval)
+    //this will let us know if we're in the midst of a quiz or reached the end, when we reach the end we want things to reset and stop
     var interval = setInterval(function () {
         timerEl.textContent = ["Time: " + secLeft];
         secLeft--;
@@ -180,14 +195,15 @@ function startTimer() {
             clearInterval(interval);
             timerEl.textContent = "Time's Up";
             showResults()
+            secLeft = 59
         }
     }, 1000);
 }
 //Leaving this line for future debugging
 function scoreTracker() {
-    // scoreEl.textContent = score;
-    // scoreTestEl.textContent = score;
-    // console.log(score)
+    scoreEl.textContent = score;
+    scoreTestEl.textContent = score;
+    console.log(score)
 }
 //get rid of feedback text after set time
 function feedbackTimeOut() {
@@ -707,6 +723,8 @@ function showQuestion10() {
 
 function hideAllQuestions() {
     questionEl.style.display = 'none';
+    corrAnsEL.style.display = 'none';
+
 
     option1El.style.display = 'none';
     option2El.style.display = 'none';
@@ -757,26 +775,35 @@ function hideAllQuestions() {
     Q10option2El.style.display = 'none';
     Q10option3El.style.display = 'none';
     Q10option4El.style.display = 'none';
-    corrAnsEL.style.display = 'none';
 }
 function showResults() {
     //lets hide the question elements again
     hideAllQuestions()
     showResultsEl()
+    timeResetCount += 1
     //and show the results window
     scoreEl.textContent = "Your final score is " + score;
+
+    clearInterval(interval)
+    console.log(interval)
+    secLeft = 0;
+    timerEl.textContent = 'Quiz Complete';
+
     submitEl.addEventListener("click", renderResults);
 }
 if (!localStorage.getItem("myScoreLocal")) {
     var prevScores = [];
 } else { var prevScores = JSON.parse(localStorage.getItem("myScoreLocal")) }
-
+console.log(historyList)
+console.log(prevScores)
 function renderResults() {
     var myScore = {
         userName: nameInputEl.value,
         userScore: score
     }
-    prevScores.push(myScore)
+    if (myScore.userName !== '') {
+        prevScores.push(myScore)
+    }
     localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
 
     //Switch displays
@@ -793,7 +820,6 @@ function renderResults() {
     var playerScore = '';
 
     prevScores.sort((a, b) => b.userScore - a.userScore)
-
     for (var i = 0; i < prevScores.length; i++) {
         var playerName = (prevScores[i].userName);
         var playerScore = (prevScores[i].userScore);
@@ -804,29 +830,13 @@ function renderResults() {
 
         historyList.appendChild(li)
     }
-}
 
-//at the moment dead code here
-function showHistory() {
-    prevScores.sort((a, b) => b.userScore - a.userScore)
-    if (prevScores !== null) {
-        for (var i = 0; i < prevScores.length; i++) {
-            console.log(prevScores[i].userName)
-            console.log(prevScores[i].userScore)
-            var playerName = (prevScores[i].userName);
-            var playerScore = (prevScores[i].userScore);
 
-            var li = document.createElement("li");
-            //puts it togehter
-            li.textContent = playerName + ': ' + playerScore + ' points';
+    //lets also reset the countdown timer
 
-            historyList.appendChild(li)
-        }
-    } else historyList = []
 }
 
 function clearScores() {
-    hideResultsEl()
     historyList = []
     li = []
     prevScores = []
@@ -845,9 +855,9 @@ function hideResultsEl() {
 //show results elements
 function showResultsEl() {
     resultsEl.style.display = 'block';
-    // submitEl.style.display = 'flex';
-    // nameInputEl.style.display = 'flex';
-    // scoreEl.style.display = 'flex'
+    submitEl.style.display = 'flex';
+    nameInputEl.style.display = 'flex';
+    scoreEl.style.display = 'flex'
 }
 //hide history elements
 function hideHistoryEl() {
@@ -856,3 +866,4 @@ function hideHistoryEl() {
     clearButton.style.display = 'none';
 
 }
+
