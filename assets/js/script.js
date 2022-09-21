@@ -88,7 +88,6 @@ option2El.style.display = 'none';
 option3El.style.display = 'none';
 option4El.style.display = 'none';
 
-
 Q2option1El.style.display = 'none';
 Q2option2El.style.display = 'none';
 Q2option3El.style.display = 'none';
@@ -135,6 +134,8 @@ Q10option3El.style.display = 'none';
 Q10option4El.style.display = 'none';
 //Lets start the quiz
 beginEl.addEventListener('click', start);
+
+//options if they go directly to the history page
 historyLink.addEventListener('click', renderResults);
 homeButton.addEventListener('click', homePage);
 clearButton.addEventListener('click', clearScores);
@@ -152,6 +153,7 @@ function homePage() {
 function start() {//when the quiz starts lets hide the title and start button
     beginQuiz();
     startTimer();
+    questionEl.style.display = 'flex';
     option1El.style.display = 'flex';
     option2El.style.display = 'flex';
     option3El.style.display = 'flex';
@@ -168,14 +170,12 @@ function beginQuiz() {
 
 }
 //Lets display the questions 
-//currently does not fucntion while inside function, why?
 // this is the base of the timer, can add hte in penalty for wrong answers in the space where i determine the right answer and add points
 function startTimer() {
-    var secLeft = 59;
     var interval = setInterval(function () {
         timerEl.textContent = ["Time: " + secLeft];
-        secLeft--;;
-        //if they answer wrong remove 15
+        secLeft--;
+        //if they answer wrong remove 10
         if (secLeft < 1) {
             clearInterval(interval);
             timerEl.textContent = "Time's Up";
@@ -183,12 +183,13 @@ function startTimer() {
         }
     }, 1000);
 }
-//this line can come out
+//Leaving this line for future debugging
 function scoreTracker() {
-    scoreEl.textContent = score;
-    scoreTestEl.textContent = score;
+    // scoreEl.textContent = score;
+    // scoreTestEl.textContent = score;
     // console.log(score)
 }
+//get rid of feedback text after set time
 function feedbackTimeOut() {
     corrAnsEL.textContent = '';
 }
@@ -315,34 +316,26 @@ function showQuestion1() {
     option4El.textContent = [question1Info.opt4];
 
 
-    //score empty array
-
     if (option1El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         //they got it wrong so they lose 10 seconds and the text will tell them they got it wrong
         corrAnsEL.textContent = "Wrong!";
         //this must go here so that it is included on the click of option1
         showQuestion2();
     }));
     if (option2El.addEventListener('click', function () {
-        score += 5
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion2();
     }));
     if (option3El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion2();
     }));
     if (option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion2();
     }));
@@ -368,30 +361,23 @@ function showQuestion2() {
     setTimeout(feedbackTimeOut, 2000);
 
     if (Q2option1El.addEventListener('click', function () {
-        score += 5
-        console.log(score)
+        score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion3();
     }));
     if (Q2option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion3();
     }));
     if (Q2option3El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion3();
     }));
     if (Q2option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion3();
     }));
@@ -416,30 +402,23 @@ function showQuestion3() {
 
 
     if (Q3option1El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
     }));
     if (Q3option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
     }));
     if (Q3option3El.addEventListener('click', function () {
         score += 5;
-        console.log(score)
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion4();
     }));
     if (Q3option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion4();
     }));
@@ -464,29 +443,22 @@ function showQuestion4() {
 
     if (Q4option1El.addEventListener('click', function () {
         score += 5;
-        console.log(score);
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion5();
     }));
     if (Q4option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
     }));
     if (Q4option3El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
     }));
     if (Q4option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion5();
     }));
@@ -510,30 +482,22 @@ function showQuestion5() {
     setTimeout(feedbackTimeOut, 2000);
 
     if (Q5option1El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
     if (Q5option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
     if (Q5option3El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion6();
     }));
     if (Q5option4El.addEventListener('click', function () {
         score += 5;
-        console.log(score)
-        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion6();
@@ -558,31 +522,23 @@ function showQuestion6() {
     setTimeout(feedbackTimeOut, 2000);
 
     if (Q6option1El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
     }));
     if (Q6option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
     }));
     if (Q6option3El.addEventListener('click', function () {
         score += 5;
-        console.log(score)
-        // score += 5;
         scoreTracker();
         corrAnsEL.textContent = "Correct";
         showQuestion7();
     }));
     if (Q6option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion7();
     }));
@@ -612,23 +568,17 @@ function showQuestion7() {
         showQuestion8();
     }));
     if (Q7option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
     }));
     if (Q7option3El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
     }));
     if (Q7option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion8();
     }));
@@ -652,9 +602,7 @@ function showQuestion8() {
     setTimeout(feedbackTimeOut, 2000);
 
     if (Q8option1El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
@@ -665,16 +613,12 @@ function showQuestion8() {
         showQuestion9();
     }));
     if (Q8option3El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
     if (Q8option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion9();
     }));
@@ -704,23 +648,17 @@ function showQuestion9() {
         showQuestion10();
     }));
     if (Q9option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
     }));
     if (Q9option3El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
     }));
     if (Q9option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showQuestion10();
     }));
@@ -744,16 +682,12 @@ function showQuestion10() {
     setTimeout(feedbackTimeOut, 2000);
 
     if (Q10option1El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showResults();
     }));
     if (Q10option2El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showResults();
     }));
@@ -764,15 +698,11 @@ function showQuestion10() {
         showResults();
     }));
     if (Q10option4El.addEventListener('click', function () {
-        if (secLeft > 0) {
-            secLeft -= 10;
-        }
+        secLeft -= 10;
         corrAnsEL.textContent = "Wrong!";
         showResults();
     }));
 }
-
-historyEl.addEventListener("click", showResults)
 
 
 function hideAllQuestions() {
@@ -832,9 +762,8 @@ function hideAllQuestions() {
 function showResults() {
     //lets hide the question elements again
     hideAllQuestions()
-
+    showResultsEl()
     //and show the results window
-    resultsEl.style.display = 'block'
     scoreEl.textContent = "Your final score is " + score;
     submitEl.addEventListener("click", renderResults);
 }
@@ -858,9 +787,7 @@ function renderResults() {
     historyEl.style.display = 'flex';
     homeButton.style.display = 'block';
     clearButton.style.display = 'block'
-    //lets empty these so it doesn't save over
-    nameInputEl.value = '';
-    score = 0
+
     //establishing new variables
     var playerName = '';
     var playerScore = '';
@@ -878,10 +805,14 @@ function renderResults() {
         historyList.appendChild(li)
     }
 }
+
+//at the moment dead code here
 function showHistory() {
     prevScores.sort((a, b) => b.userScore - a.userScore)
     if (prevScores !== null) {
         for (var i = 0; i < prevScores.length; i++) {
+            console.log(prevScores[i].userName)
+            console.log(prevScores[i].userScore)
             var playerName = (prevScores[i].userName);
             var playerScore = (prevScores[i].userScore);
 
@@ -895,13 +826,33 @@ function showHistory() {
 }
 
 function clearScores() {
+    hideResultsEl()
+    historyList = []
+    li = []
+    prevScores = []
+    localStorage.removeItem("myScoreLocal")
+    // renderResults()
+    // showHistory()
+}
+
+//hide results elements
+function hideResultsEl() {
     resultsEl.style.display = 'none';
     submitEl.style.display = 'none';
     nameInputEl.style.display = 'none';
     scoreEl.style.display = 'none'
-    historyList = []
-    prevScores = []
-    localStorage.removeItem("myScoreLocal")
-    // renderResults()
-    showHistory()
+}
+//show results elements
+function showResultsEl() {
+    resultsEl.style.display = 'block';
+    // submitEl.style.display = 'flex';
+    // nameInputEl.style.display = 'flex';
+    // scoreEl.style.display = 'flex'
+}
+//hide history elements
+function hideHistoryEl() {
+    historyEl.style.display = 'none';
+    homeButton.style.display = 'none';
+    clearButton.style.display = 'none';
+
 }
