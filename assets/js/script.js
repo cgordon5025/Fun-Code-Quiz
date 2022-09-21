@@ -830,10 +830,6 @@ function renderResults() {
 
         historyList.appendChild(li)
     }
-
-
-    //lets also reset the countdown timer
-
 }
 
 function clearScores() {
@@ -864,6 +860,4 @@ function hideHistoryEl() {
     historyEl.style.display = 'none';
     homeButton.style.display = 'none';
     clearButton.style.display = 'none';
-
 }
-
