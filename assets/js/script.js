@@ -1,4 +1,5 @@
 var score = 0
+var secLeft = 59
 //Here I am calling down elements by ID, keeping them all here
 // here are the vars that are set at the begining
 // Lets make all the variables
@@ -138,7 +139,7 @@ historyLink.addEventListener('click', renderResults);
 homeButton.addEventListener('click', homePage);
 clearButton.addEventListener('click', clearScores);
 function homePage() {
-    beginEl.style.display = 'flex';
+    beginEl.style.display = 'inline-block';
     titleEl.style.display = 'flex';
     instructEl.style.display = 'flex';
     resultsEl.style.display = 'none';
@@ -774,7 +775,7 @@ function showQuestion10() {
 historyEl.addEventListener("click", showResults)
 
 
-function hideAll() {
+function hideAllQuestions() {
     questionEl.style.display = 'none';
 
     option1El.style.display = 'none';
@@ -830,7 +831,7 @@ function hideAll() {
 }
 function showResults() {
     //lets hide the question elements again
-    hideAll()
+    hideAllQuestions()
 
     //and show the results window
     resultsEl.style.display = 'block'
@@ -848,6 +849,8 @@ function renderResults() {
     }
     prevScores.push(myScore)
     localStorage.setItem("myScoreLocal", JSON.stringify(prevScores))
+
+    //Switch displays
     titleEl.style.display = 'none';
     instructEl.style.display = 'none'
     beginEl.style.display = 'none';
@@ -862,6 +865,7 @@ function renderResults() {
     var playerName = '';
     var playerScore = '';
 
+    prevScores.sort((a, b) => b.userScore - a.userScore)
 
     for (var i = 0; i < prevScores.length; i++) {
         var playerName = (prevScores[i].userName);
@@ -874,13 +878,30 @@ function renderResults() {
         historyList.appendChild(li)
     }
 }
+function showHistory() {
+    prevScores.sort((a, b) => b.userScore - a.userScore)
+    if (prevScores !== null) {
+        for (var i = 0; i < prevScores.length; i++) {
+            var playerName = (prevScores[i].userName);
+            var playerScore = (prevScores[i].userScore);
 
+            var li = document.createElement("li");
+            //puts it togehter
+            li.textContent = playerName + ': ' + playerScore + ' points';
+
+            historyList.appendChild(li)
+        }
+    } else historyList = []
+}
 
 function clearScores() {
     resultsEl.style.display = 'none';
+    submitEl.style.display = 'none';
+    nameInputEl.style.display = 'none';
+    scoreEl.style.display = 'none'
     historyList = []
     prevScores = []
     localStorage.removeItem("myScoreLocal")
-    renderResults()
-
+    // renderResults()
+    showHistory()
 }
